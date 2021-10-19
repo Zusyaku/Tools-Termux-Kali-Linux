@@ -1,0 +1,39 @@
+
+
+
+
+First step :
+
+
+pkg install nano
+
+pkg install curl
+
+
+sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/install.sh)"
+
+
+~/.termux/colors.sh   (change color)
+
+~/.termux/fonts.sh    (change font)
+
+
+
+Second step :
+
+source ~/.zshrc
+
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+
+nano .zshrc
+
+
+zsh-autosuggestions
+
+
+
+
+Note :
+type ctrl + x and Y to save and exit
