@@ -1,0 +1,2 @@
+# juz-amma
+# ngaji ngab

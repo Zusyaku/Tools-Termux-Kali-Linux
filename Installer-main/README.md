@@ -1,0 +1,2 @@
+# Installer
+INI BUKAN SCRIPT TAPI TXT
