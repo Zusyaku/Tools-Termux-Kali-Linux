@@ -1,0 +1,17 @@
+# !/bin/bash
+# source : https://www.lisenet.com/2014/convert-iam-secret-access-key-to-ses-smtp-password-in-bash/
+# script for convert aws secret key to smtp
+
+Convert_to_SMTP(){
+    # Dont change anything on this line!
+    PORT="587"
+    AWS_SEC="$(echo $aws_cred | cut -d "|" -f2)"
+    MESSAGE="SendRawEmail"
+    VerInBytes="2"
+    VerInBytes=$(printf \\$(printf '%03o' "$VerInBytes"))
+
+    SignInBytes=$(echo -n $MESSAGE | openssl dgst -sha256 -hmac "${AWS_SEC}" -binary)
+    SignAndVer=""$VerInBytes""$SignInBytes""
+    SMTP_PASS=$(echo -n "$SignAndVer" | base64)
+    echo -e "MAIL_HOST : email-smtp.$(echo $aws_cred | cut -d "|" -f3).amazonaws.com\nMAIL_PORT : ${PORT}\nMAIL_USER : $(echo $aws_cred | cut -d "|" -f1)\nMAIL_PASS : ${SMTP_PASS}\nMAIL_FROM : ${FROM_MAIL}\nLIMIT_SEND : ${LIMIT_SEND}\nSTATUS : $1\n"
+}

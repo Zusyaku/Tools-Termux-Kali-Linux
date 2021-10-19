@@ -1,0 +1,23 @@
+# !/bin/bash
+# script for create login profile
+
+AWS_Create_Login_Profile(){
+	echo -e "${white}[ ${yellow}* ${white}] ${yellow}TRYING TO CREATE LOGIN PROFILE${white}"
+	if [[ $(aws iam list-users &> /dev/null; echo $?) -eq "0" ]]; then
+		echo "$aws_cred" >> Results/CAN_ACCESS_IAM.txt
+		check_user=$(aws iam create-user --user-name "${console_user}" &> user_console.tmp; cat user_console.tmp | grep -o "User\|EntityAlreadyExists" | head -n1)
+		if [[ $check_user == "User" ]]; then
+			ARN_ID=$(cat user_console.tmp | grep -oP '"Arn": "\K[^"]+' | cut -d ":" -f5)
+			aws iam attach-user-policy --user-name "${console_user}" --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+			aws iam create-login-profile --user-name "${console_user}" --password "${console_pass}" > /dev/null
+			echo -e "${white}[ ${grep}+ ${white}] ${green}SUCCESS CREATE LOGIN PROFILE ${blue}- ${yellow}${ARN_ID}${white}:${yellow}${console_user}${white}:${yellow}${console_pass}\n${white}"
+			echo "${ARN_ID}:${console_user}:${console_pass}" >> Results/CONSOLE_ACCOUNT.txt
+		elif [[ $check_user == "EntityAlreadyExists" ]]; then
+			echo -e "${white}[ ${red}ERROR ${white}] ${blue}- ${white}USER ${green}${console_user} ${blue}- ${red}ALREADY EXIST ${blue}- ${white}CHANGE USERNAME PLEASE\n"
+		else
+			echo -e "${white}[ ${red}- ${white}] ${red}ACCESS DENIED FOR CREATE LOGIN PROFILE\n${white}"
+		fi
+	else
+		echo -e "${white}[ ${red}- ${white}] ${red}ACCESS DENIED FOR ACCESS ${yellow}\e[4mAWS IAM\e[0m\n${white}"
+	fi
+}
