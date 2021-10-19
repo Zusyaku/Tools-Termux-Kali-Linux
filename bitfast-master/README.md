@@ -1,0 +1,2 @@
+# bitfast
+bot apk bitfast

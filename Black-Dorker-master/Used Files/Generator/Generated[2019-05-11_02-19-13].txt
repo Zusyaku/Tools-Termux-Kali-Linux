@@ -1,0 +1,4 @@
+inurl:news.php?id= site:.com
+inurl:news.html?id= site:.com
+inurl:news.xml?id= site:.com
+inurl:news.js?id= site:.com
