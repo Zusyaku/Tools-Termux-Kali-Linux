@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+      #konten {
+        width: 90%;
+        margin: auto;
+        height: 100%;
+        padding: 10px;
+        position: relative;
+        
+      }
+      video {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+      video::cue {
+        background-color: transparent;
+      }
+      span {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        moz-transform: translateX(-50%) translateY(-20%);
+        -webkit-transform: translateX(-50%) translateY(-20%);
+        transform: translateX(-50%) translateY(-20%);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="konten">
+      <center><span>Nonton Film Tanpa Iklan by Karjok Pangesty</span></center>
+      
+        <video controls preload="none">
+          <source src="{{film}}" type="{{tipe}}">
+          <track src="{{sub}}" default>
+        </video>
+     <!--
+        <video id="hls" controls>
+          <source src="{{film}}" type="{{tipe}}">
+          <track src="/static/sub.vtt" default>
+        </video>
+        -->
+        <!--
+        <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+        <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+        
+        <script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+        <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+        <script>
+          var player = videojs('hls');
+          player.src({
+            useCueTags: true
+          });
+          player.play();
+        </script>
+      
+       <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+      -->
+    </div>
+  </body>
+  <!--
+  <script type="text/javascript" src="/static/sub.js"></script>-->
+</html>

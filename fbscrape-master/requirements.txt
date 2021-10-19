@@ -1,0 +1,2 @@
+facebook-scraper==0.2.46
+PyMySQL==1.0.2
