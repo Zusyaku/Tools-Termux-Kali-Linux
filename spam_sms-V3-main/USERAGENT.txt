@@ -1,0 +1,27 @@
+MR_FAGHP={
+'Host':'api.duniagames.co.id',
+'content-length':'50',
+'accept':'application/json, text/plain, */*',
+'sec-ch-ua-mobile':'?0',
+'save-data':'on',
+'user-agent':'Mozilla/5.0 (Linux; Android 9; SM-T825Y) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36',
+'content-type':'application/json',
+'origin':'https://duniagames.co.id',
+'sec-fetch-site':'same-site',
+'sec-fetch-mode':'cors',
+'sec-fetch-dest':'empty',
+'referer':'https://duniagames.co.id/',
+'accept-encoding':'gzip, deflate, br',
+'accept-language':'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'
+}
+
+
+
+
+subs_FAGHP={
+"phoneNumber":081313537943,
+"inquiryId":222087516
+}
+
+
+BLACK_SQUAD=requests.post('https://api.duniagames.co.id/api/transaction/v1/top-up/transaction/req-otp/',headers=MR_FAGHP,json=subs_FAGHP).text
