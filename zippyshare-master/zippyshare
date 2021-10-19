@@ -1,0 +1,154 @@
+#!/bin/bash
+# @Description: zippyshare.com file download script
+# @Author: JeelsBoobz
+# @URL: https://github.com/JeelsBoobz/zippyshare
+# @Version: 202005251633
+# @Date: 2020-05-25
+# @Usage: ./zippyshare url
+
+function usage(){
+	printf "[*] Usage : $0 [OPTIONS] <url>\n"
+	printf "[*] Batch Usage : $0 [OPTIONS] <file_list.txt>\n\n"
+	printf "[*] Options :\n"
+	printf "\t-h | --help				 : print this help message\n"
+	printf "\t-d OUTDIR | --dir OUTDIR	: indicate the output directory name\n"
+}
+
+function exit_error(){
+	exit 1;
+}
+
+function decodeURL()
+{
+	printf "%b\n" "$(sed 's/+/ /g; s/%\([0-9a-f][0-9a-f]\)/\\x\1/g;')";
+}
+
+function zippydownload()
+{
+	prefix="$( echo -n "${url}" | cut -c "11,12,31-38" | sed -e 's/[^a-zA-Z0-9]//g' )"
+	cookiefile="${OUTDIR}${prefix}-cookie.tmp"
+	infofile="${OUTDIR}${prefix}-info.tmp"
+
+	# loop that makes sure the script actually finds a filename
+	filename=""
+	retry=0
+	while [ -z "${filename}" -a ${retry} -lt 10 ]
+	do
+		let retry+=1
+		rm -f "${cookiefile}" 2> /dev/null
+		rm -f "${infofile}" 2> /dev/null
+		 wget -O "${infofile}" "${url}" \
+	--no-hsts \
+		--cookies=on \
+		--keep-session-cookies \
+		--save-cookies="${cookiefile}" \
+		--quiet
+		filename="$( grep "getElementById..dlbutton...href" "${infofile}" | cut -d"/" -f5 | sed "s/\";//g" )"
+	done
+
+	if [ "${retry}" -ge 10 ]
+	then
+		echo "could not download file from ${url}"
+		rm -f "${cookiefile}" 2> /dev/null
+		rm -f "${infofile}" 2> /dev/null
+		rm -f "${HOME}.wget-hsts" 2> /dev/null
+		return 1
+	fi
+
+	# Get cookie
+	if [ -f "${cookiefile}" ]
+	then
+		jsessionid="$( cat "${cookiefile}" | grep "JSESSIONID" | cut -f7)"
+	else
+		echo "can't find cookie file for ${prefix}"
+		exit 1
+	fi
+
+	if [ -f "${infofile}" ]
+    then
+        # Get url algorithm
+        dlbutton="$( grep -oE 'var a = [0-9]+' ${infofile} | grep -oE '[0-9]+'  )"
+        if [ -n "${dlbutton}" ]
+        then
+	        algorithm="${dlbutton}**3+3"
+		a="$( echo $(( ${algorithm} )) )"
+        else
+	        dlbutton="$( grep 'getElementById..dlbutton...href' "${infofile}" | grep -oE '\([0-9].*\)' )"
+	        if [ -n "${dlbutton}" ]
+	        then
+		        algorithm="${dlbutton}"
+			a="$( echo $(( ${algorithm} )) )"
+	        else
+                echo "could not get zippyshare url algorithm"
+                exit 1
+	        fi
+        fi
+
+        # Get ref, server, id
+        ref="$( cat "${infofile}" | grep 'property="og:url"' | cut -d'"' -f4 | grep -o "[^ ]\+\(\+[^ ]\+\)*" )"
+
+        server="$( echo "${ref}" | cut -d'/' -f3 )"
+
+        id="$( echo "${ref}" | cut -d'/' -f5 )"
+    else
+        echo "can't find info file for ${prefix}"
+        exit 1
+    fi
+
+    # Build download url
+    dl="https://${server}/d/${id}/${a}/${filename}"
+
+	# Set browser agent
+	agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+
+	echo "[+] $( echo ${filename} | decodeURL )"
+
+	# Start download file
+	 wget -c -O "${OUTDIR}$( echo ${filename} | decodeURL )" "${dl}" \
+	-q --show-progress \
+	--no-hsts \
+	--referer="${ref}" \
+	--load-cookies="${cookiefile}" \
+	--header "Cookie: JSESSIONID=${jsessionid}" \
+	--user-agent="${agent}"
+	rm -f "${cookiefile}" 2> /dev/null
+	rm -f "${infofile}" 2> /dev/null
+	rm -f "${HOME}.wget-hsts" 2> /dev/null
+}
+
+OPTIND=1
+OUTDIR=""
+
+while getopts "h?d:" opt; do
+	case "$opt" in
+	h|\?)
+		usage
+		exit 0
+		;;
+	d)
+		echo "[+] Save to directory [$2]"
+		OUTDIR="${2}/"
+		;;
+	esac
+done
+
+shift $((OPTIND-1))
+
+[ "${1:-}" = "--" ] && shift
+
+if [ -z "${1}" ] || [ "${1}" == "-" ]
+then
+	usage
+	exit_error
+fi
+
+if [ -f "${1}" ]
+then
+	for url in $( cat "${1}" | grep -i 'zippyshare.com' )
+	do
+		zippydownload "${url}"
+	done
+else
+	url="${1}"
+	zippydownload "${url}"
+fi
