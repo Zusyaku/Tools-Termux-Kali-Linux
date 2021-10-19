@@ -1,0 +1,5 @@
+mechanize
+requests
+bs4
+tqdm
+termcolor
