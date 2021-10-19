@@ -1,0 +1,102 @@
+http://anrwiki.blogspot.com
+
+   _     _     _     _     _     _     _     _  
+  / \   / \   / \   / \   / \   / \   / \   / \ 
+ ( T ) ( U ) ( T ) ( O ) ( R ) ( I ) ( A ) ( L )
+  \_/   \_/   \_/   \_/   \_/   \_/   \_/   \_/ 
+
+
+cara install :
+
+$ apt update && apt upgrade -y
+$ apt install git
+$ git clone https://github.com/Amriez/AOCDEFACE
+
+fitur yang tersedia :
+~01.Deface
+~02.Ambil script deface orang lain
+~03.Deface-mass-exploit
+~04.Admin-panel-finder
+
+cara pakai :
+
+~01.Deface 
+pertama :
+kalian siapkan dulu dork nyah :v 
+-contoh :
+intitle:”index.of” intext:”(Win32) DAV/2″ intext:”Apache” 
+intitle:”index.of” intext:”(Win32) DAV/2″ intext:”Apache” site:edu 
+intitle:”index.of” intext:”(Win32) DAV/2″ intext:”Apache” site:gov 
+intitle:”index.of” intext:”(Win32) DAV/2″ intext:”Apache” site:YOURCOUNTRY 
+(misal: my, us, th. dll) 
+inurl:webdav 
+inurl:.com.x/*.asp 
+inurl:.edu.x/*.asp 
+inurl:.gov.x/*.asp 
+inurl:.net.x/*.asp
+inurl:.org.x/*.asp
+
+dork masih banyak lagi
+cari di google
+
+-kedua lalu cari web nyah dengan dork tadi di search engine kalian :v
+
+lalu kalian buka AOCdeface nyah
+cd AOCDEFACE
+sh AOC.sh
+
+ketik A
+
+lalu kalian masukan script deface nyah :v
+ingat script deface harus ada di memory internal :v
+jika sudah
+
+masukan web tadi :v
+
+web harus benar-benar sudah vulnerability :v
+jika tidak...kemungkinan gagal...
+
+~02.Takescript
+ambil script deface orang lain:v
+
+pertama kalian harus ada target web yang sedang terkena deface :v
+lalu kalian buka AOCdeface nyah
+cd AOCDEFACE
+sh AOC.sh
+
+ketik B
+
+lalu masukan web nyah :v
+
+~03.DEFACE-MASS-EXPLOIT
+
+sama seperti deface di atas
+deface yang satu ini untuk mendeface lebih dari satu
+tapi sayang nyah kategori ini hanya mencakup 20 deface sajah 🙏
+
+buka AOCdeface
+cd AOCDEFACE
+sh AOC.sh
+
+ketik C
+
+~04.ADMIN-LOGIN-FINDER
+
+ini adalah tools untuk mencari admin login sebuah website
+ini tergolong kategori bypass-admin
+tapi cuman scan nyah doang :v
+
+buka AOCdeface
+cd AOCDEFACE
+sh AOC.sh
+
+ketik D
+
+lalu masukan website yang mau di scann nyah :v
+
+dan tunggu 
+
+sudah segituh sajah tutorial nyahh 
+
+maaf bila ada kesalahan :v
+
