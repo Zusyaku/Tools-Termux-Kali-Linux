@@ -1,0 +1,2 @@
+selenium==2.47.3
+antigate==1.3.4

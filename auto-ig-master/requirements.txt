@@ -1,0 +1,4 @@
+mechanize
+requests
+bs4
+prompt_toolkit
