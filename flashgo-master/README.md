@@ -1,0 +1,2 @@
+# flashgo
+bot flashgo
