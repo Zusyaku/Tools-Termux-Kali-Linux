@@ -1,0 +1,173 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+
+
+
+
+
+
+# note : tidak ada script yg sama dengan script buatan polygon jadi hargai author jng di recode
+# p1 : saya open source karena sebagai terimakasi saya kepada kalian yg sudah dukung saya
+# p2 : jadi jng di ubah text nya upload boleh penting jangan di recode
+# p3 : jng sok nuduh saya recode script orang kalo gak punya bukti jng sok nuduh orang
+#      untuk fungsi command script ini silakan pm no ini : 085731184377
+#
+# $ hargai author dengan cara tidak merecode script ini dan jangan ngada ngada script
+#   ini buatan kalian TINGGAL MAKE AJA SUSAH BET ANJ
+
+#                      code by © polygon
+
+#//////////////////////// dep scan ///////////////////////////////
+
+sleep 0.1
+echo
+
+## FRAME
+function __frame__()
+{
+                 time="/data/data/com.termux/files/usr/bin/sleep"
+
+                 local mikir="🕛🕐🕑🕒🕓🕔🕕🕖🕗🕘🕙🕛" #jadi ini adalah frame / langkah gerak nya
+
+                  jum=0 # variabel stop
+                     while [ true ]; do #loop untuk mengulang command di bawah nya "while true" artinya di ulang terus menerus
+                       for ((i=0; i<${#mikir}; i++)); do # loop frame untuk memulai frame 1 ke frame lain
+                                 $time 0.1 # waktu animasi nya
+                           printf "\e[92mscan\e[96mning \e[93mdep \e[00m\r${mikir:$i:1}" # string text dan loop frame nya apa itu \r ? "\r itu adalah carriage return kalo \n itu adalah new line"
+                    done # akhiran
+                   ((jum++)) # let nilai 0
+                if [ $jum -eq 11 ]; then # jika nilai 0 menjadi sebelas maka operator ini akan aktif
+                      break # berhenti loop
+                 fi # akhir if / jika
+              done # akhir dari while loop
+}
+
+__frame__ # memanggil definisi nya
+
+printf "${st}"
+echo
+echo
+sleep 2
+
+### dep scaning
+
+if test -f "/data/data/com.termux/files/usr/bin/which"; then
+   echo -e "\e[91m@\e[92mwhich \e[93mdone \e[00m"
+     sleep 0.1
+else
+    echo -e "\e[92m[\e[91m?\e[92m]\e[00m not package which plis you install\e[00m"
+     exit 1
+fi
+sleep 0.1
+echo
+if test -f "/data/data/com.termux/files/usr/bin/setterm"; then
+           echo -e "\e[96m@\e[92msetterm \e[93mdone \e[00m"
+            sleep 0.1
+       else
+           echo -e "\e[92m[\e[91m?\e[92m]\e[00m not package setterm plis you install\e[00m"
+       exit 2
+fi
+sleep 0.1
+echo
+if test -f "/data/data/com.termux/files/usr/bin/figlet"; then
+               echo -e "\e[94m@\e[92mfiglet \e[93mdone \e[00m"
+   else
+       echo -e "\e[92m[\e[91m?\e[92m]\e[00m not package figlet plis you install\e[00m"
+     exit 1
+fi
+sleep 0.1
+echo
+if test -f "/data/data/com.termux/files/usr/bin/toilet"; then
+             echo -e "\e[91m@\e[92mwhich \e[93mtoilet \e[00m"
+           sleep 0.1
+   else
+       echo -e "\e[92m[\e[91m?\e[92m]\e[00m not package toilet plis you install\e[00m"; exit 1
+fi
+sleep 0.1
+
+#_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/   end dep scan
+
+clear
+
+#### warna / colorize start
+
+select=( "setterm" "toilet" "figlet" )
+
+for=( 'black' 'red' 'green' 'yellow' 'blue' 'magenta' 'cyan' 'white' )
+
+
+             ####################################################
+             st=$( printf "\e[00m" )
+             me=$( ${select[0]} --foreground ${for[1]} --bold on )   pur=$( ${select[0]} --foreground ${for[5]} --bold on )
+             ij=$( ${select[0]} --foreground ${for[2]} --bold on )   cy=$( ${select[0]} --foreground ${for[6]} --bold on )
+             ku=$( ${select[0]} --foreground ${for[3]} --bold on )   bad=$( printf '\e[1;104m' )
+             bi=$( ${select[0]} --foreground ${for[4]} --bold on )   bla=$( ${select[0]} --foreground ${for[0]} --bold on )
+             pu=$( ${select[0]} --foreground ${for[7]} --bold on )
+             #####################################################
+
+
+#### END COLORIZE
+
+
+
+##### DEFINISI INSTALL
+
+      function install()
+{
+
+echo -e "${pur}╱╱╱╱╱╱╱${st}${bla}╭╮${st}${pur}╱╱╱${st}${bla}╭╮╭╮${st}"
+echo -e "${pur}╱╱╱╱╱╱${st}${bla}╭╯╰╮${st}${pur}╱╱${st}${bla}┃┃┃┃${st}"
+echo -e "${bi}╭┳━╮╭━┻╮╭╋━━┫┃┃┃${st}            ${ij}code ${me}by${pu} ${bad}polygon${st}"
+echo -e "${ij}┣┫╭╮┫━━┫┃┃╭╮┃┃┃┃${st}        ${ij}======${ku}=======${me}======${cy}====${st}"
+echo -e "${bi}┃┃┃┃┣━━┃╰┫╭╮┃╰┫╰╮${st}"
+echo -e "${ij}╰┻╯╰┻━━┻━┻╯╰┻━┻━╯${st}"
+echo -e "${ij}<${ku}>${bi}===============${ku}==============${ij}=============${me}=========${ij}<${ku}>${st}"
+    echo
+ echo
+
+### apt module
+
+local=$( which apt )
+in=( "gawk" "curl" "pv" "pip" "figlet" "toilet" "bastet" "vitetris" "tty-solitaire" "ninvaders" "moon-buggy" "coreutils" "python" "jq" )
+
+$local-get --fix-missing install ${in[0]}
+$local --fix-missing install ${in[1]}
+$local --fix-missing install ${in[2]}
+$local --fix-missing install ${in[3]}
+$local --fix-missing install ${in[4]}
+$local --fix-missing install ${in[5]}
+$local --fix-missing install ${in[6]}
+$local --fix-missing install ${in[7]}
+$local --fix-missing install ${in[8]}
+$local --fix-missing install ${in[9]}
+$local --fix-missing install ${in[10]}
+$local --fix-missing install ${in[11]}
+$local --fix-missing install ${in[12]}
+$local --fix-missing install ${in[13]}
+$local --fix-missing install ${in[14]}
+
+# END
+
+echo
+echo
+
+#pip module
+
+import=( 'httpie' 'emojify' 'requests' 'bs4' )
+     pip install ${import[0]}
+     pip install ${import[1]}
+     pip install ${import[2]}
+     pip install ${import[3]}
+
+# END
+
+
+
+# install resource
+
+https --body --download 'https://raw.githubusercontent.com/Bayu12345677/term-tools/main/mavia.sh'
+echo
+echo -e "${cy}bash ${ij}mavia.sh ${pur}--help${st}"
+}
+
+install

@@ -1,0 +1,10 @@
+pkg install gem && gem install lolcat
+gem install lolcat
+pkg install curl
+pkg install bash && pkg install openssl
+pkg install jq
+pkg install git
+pkg install figlet && pkg install toilet
+pkg install tput
+
+figlet -f bigmono9 "Done ngab" | lolcat -S 3
