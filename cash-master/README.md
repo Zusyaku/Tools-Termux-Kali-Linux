@@ -1,0 +1,2 @@
+# cash
+bot apk cashwallet
