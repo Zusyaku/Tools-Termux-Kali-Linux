@@ -1,0 +1,51 @@
+1000 vuln website download ⬇️
+https://www.scribd.com/doc/217640243/1000-Webdav-Vuln-Website
+
+Google dork:
+
+intitle:"index.of" intext:"(Win32) DAV/2" intext:"Apache"
+intitle:"index.of" intext:"(Win32) DAV/2" intext:"Apache" site:edu
+intitle:"index.of" intext:"(Win32) DAV/2" intext:"Apache" site:gov
+intitle:"index.of" intext:"(Win32) DAV/2" intext:"Apache" site:YOURCOUNTRY
+
+inurl:.co.id/*.asp
+inurl:.ah.cn/*.asp
+inurl:.bj.cn/*.asp
+inurl:.cq.cn/*.asp
+inurl:.fj.cn/*.asp
+
+inurl:.gd.cn/*.asp
+
+inurl:.gs.cn/*.asp
+inurl:.gz.cn/*.asp
+inurl:.gx.cn/*.asp
+inurl:.ha.cn/*.asp
+inurl:.hb.cn/*.asp
+inurl:.he.cn/*.asp
+inurl:.hi.cn/*.asp
+inurl:.hl.cn/*.asp
+inurl:.hn.cn/*.asp
+inurl:.jl.cn/*.asp
+inurl:.js.cn/*.asp
+inurl:.jx.cn/*.asp
+inurl:.ln.cn/*.asp
+inurl:.nm.cn/*.asp
+inurl:.nx.cn/*.asp
+inurl:.qh.cn/*.asp
+inurl:.sc.cn/*.asp
+inurl:.sd.cn/*.asp
+inurl:.sh.cn/*.asp
+inurl:.sn.cn/*.asp
+inurl:.sx.cn/*.asp
+inurl:.tj.cn/*.asp
+inurl:.tw.cn/*.asp
+inurl:.xj.cn/*.asp
+inurl:.xz.cn/*.asp
+inurl:.yn.cn/*.asp
+inurl:.zj.cn/*.asp
+inurl:.ac.cn/*.asp
+inurl:.com.cn/*.asp
+inurl:.edu.cn/*.asp
+inurl:.gov.cn/*.asp
+inurl:.net.cn/*.asp
+inurl:.org.cn/*.asp

@@ -1,0 +1,4 @@
+apt upgrade
+apt update
+pkg install git
+figlet tech | lolcat
