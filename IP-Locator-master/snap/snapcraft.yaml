@@ -1,0 +1,15 @@
+
+  name: ip-locator
+  version: '1.6' 
+  summary: This tool is used to lookup juicy info on either an IP or Domain.
+  description: |
+    This tools is used to give you juicy info on an IP address or a specific domain.
+
+  grade: stable
+  confinement: strict
+
+  parts:
+    my-part:
+      # See 'snapcraft plugins'
+      plugin: nil
+  

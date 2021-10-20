@@ -1,0 +1,5 @@
+
+0ptions :
+    [ 1 ] Extract Data From IP Address
+    [ 2 ] Delete All Saved ip-data
+    [ 0 ] Exit
