@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: fira;
+    src: url(../font/fira.ttf);
+}
+
+body {
+    font-family: fira;
+    background-color: #f6f6f6;
+    background-color: #333;
+}
+
+.centered {
+    display: table;
+    margin: 0 auto;
+}
+
+#container {
+    margin: auto;
+    width: 100%;
+}
+
+#header {
+    color: #333;
+    color: #fff;
+    padding: 1.5%;
+    margin-bottom: 2%;  
+    border-bottom: 1px solid #fff;
+}
+
+#link {
+    width: 35%;
+    height: 40px;
+    outline: none;
+    margin-top: 5%;
+    margin: 0 auto;
+    font-size: 20px;
+    border-radius: 3px;
+    padding-left: 10px;
+    border: 1px solid #fff;
+}
+
+button {
+    outline: none;
+    border: none;
+    height: 44px;
+    color: #fff;
+    font-size: 25px;
+    padding: 1px 15px;
+    background: #222;
+    border-radius: 3px;
+    transition-delay: 80ms;
+    border: 1px solid #fff;
+    -webkit-transition-delay: 80ms;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #333;
+    border: 1px solid #bbb;
+}
+
+button:active {
+    background: #555;
+}
+
+#input {
+    margin-top: 5%;
+    text-align: center;
+}
+
+input::selection {
+    color: #fff;
+    background-color: #444;
+}

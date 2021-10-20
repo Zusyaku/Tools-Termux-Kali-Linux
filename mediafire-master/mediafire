@@ -1,0 +1,109 @@
+#!/bin/bash
+# @Description: mediafire.com file download script
+# @Author: JeelsBoobz
+# @URL: https://github.com/JeelsBoobz/mediafire
+# @Version: 201908091049
+# @Date: 2019-08-09
+# @Usage: ./mediafire url
+
+function usage(){
+        printf "[*] Usage : $0 [OPTIONS] <url>\n"
+        printf "[*] Batch Usage : $0 [OPTIONS] <file_list.txt>\n\n"
+        printf "[*] Options :\n"
+        printf "\t-h | --help                 : print this help message\n"
+        printf "\t-d OUTDIR | --dir OUTDIR    : indicate the output directory name\n"
+}
+
+function exit_error(){
+        exit 1;
+}
+
+function decodeURL()
+{
+    printf "%b\n" "$(sed 's/+/ /g; s/%\([0-9a-f][0-9a-f]\)/\\x\1/g;')";
+}
+
+function mediafiredl()
+{
+    prefix="$( echo -n "${url}" | cut -c "32,32,32-46" | sed -e 's/[^a-zA-Z0-9]//g' )"
+    infofile="${OUTDIR}${prefix}-info.tmp"
+
+    # loop that makes sure the script actually finds a filename
+    filename=""
+    retry=0
+    while [ -z "${filename}" -a ${retry} -lt 10 ]
+    do
+        let retry+=1
+        rm -f "${cookiefile}" 2> /dev/null
+        rm -f "${infofile}" 2> /dev/null
+         wget -O "${infofile}" "${url}" \
+        --quiet
+        filename="$( grep "href=\"https://download" "${infofile)" | sed -e 's/.*\"\(.*\)\".*/\1/' | cut -d"/" -f6 | sed "s/\";//g" | decodeURL )"
+    done
+
+    if [ "${retry}" -ge 10 ]
+    then
+        echo "could not download file from ${url}"
+        rm -f "${infofile}" 2> /dev/null
+        return 1
+    fi
+
+    if [ -f "${infofile}" ]
+    then
+	dl="$( grep "href=\"https://download" "${infofile}" | sed -e 's/.*\"\(.*\)\".*/\1/' )"
+    ref="${url}"
+    else
+        echo "can't find info file for ${prefix}"
+        exit 1
+    fi
+
+    # Set browser agent
+    agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+
+    echo "[+] ${filename}"
+
+    # Start download file
+     wget -c -O "${OUTDIR}${filename}" "${dl}" \
+    -q --show-progress \
+    --referer="${ref}" \
+    --cookies=off  \
+    --user-agent="${agent}"
+    rm -f "${infofile}" 2> /dev/null
+}
+
+OPTIND=1
+OUTDIR=""
+
+while getopts "h?d:" opt; do
+    case "$opt" in
+    h|\?)
+        usage
+        exit 0
+        ;;
+    d)
+        echo "[+] Save to directory [$2]"
+        OUTDIR="${2}/"
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "${1:-}" = "--" ] && shift
+
+if [ -z "${1}" ] || [ "${1}" == "-" ]
+then
+    usage
+    exit_error
+fi
+
+if [ -f "${1}" ]
+then
+    for url in $( cat "${1}" | grep -i 'zippyshare.com' )
+    do
+        mediafiredl "${url}"
+    done
+else
+    url="${1}"
+    mediafiredl "${url}"
+fi
