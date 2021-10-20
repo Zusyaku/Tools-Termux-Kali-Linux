@@ -1,0 +1,2 @@
+# fwallet
+friendshipwallet
