@@ -1,0 +1,9 @@
+README.md
+setup.py
+toutatis/__init__.py
+toutatis/core.py
+toutatis.egg-info/PKG-INFO
+toutatis.egg-info/SOURCES.txt
+toutatis.egg-info/dependency_links.txt
+toutatis.egg-info/requires.txt
+toutatis.egg-info/top_level.txt
