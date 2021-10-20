@@ -1,0 +1,7 @@
+mechanize
+requests
+bs4
+futures
+ThreadPool
+tqdm
+prompt_toolkit
