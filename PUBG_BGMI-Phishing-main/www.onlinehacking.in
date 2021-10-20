@@ -1,0 +1,32 @@
+#!/bin/bash
+echo ""
+clear
+echo ""
+printf "\e[31m[\e[32m★\e[31m]\e[32m www.onlinehacking.in   www.onlinehacking.xyz \e[m "
+echo ""
+echo ""
+echo ""
+printf "\e[31m[\e[32m★\e[31m]\e[32m You Want to Choose System Option \e[m "
+echo ""
+echo ""
+read -p $'\e[1;40m\e[31m[\e[32m*\e[31m]\e[32m Type Name \e[1;91m (termux/linux) : \e[0m' option
+echo""
+echo""
+echo""
+
+if [[ $option == *'linux'* ]]; then
+clear
+sudo apt install wget
+
+chmod +x pro
+
+fi
+
+
+if [[ $option == *'termux'* ]]; then
+clear
+pkg install wget -y
+
+chmod +x PRO
+
+fi
