@@ -1,0 +1,2 @@
+# primepay
+bot apk primepay
