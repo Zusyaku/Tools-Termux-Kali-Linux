@@ -1,0 +1,24 @@
+#!/termux/data/data/bin/bash
+# MSFT by N11rm44L7w44711
+
+echo {
+cat banner.twn
+echo " "
+cat opts.twn
+echo }
+
+read -p "[]=> " inp
+
+if [ $inp -eq 1 ]
+then
+    bash msfi.sh
+elif [ $inp -eq 2 ]
+then
+    bash msfui.sh
+elif [ $inp -eq 3 ]
+then
+    bash msfup.sh
+elif [ $inp -eq 0 ]
+then
+    exit
+fi
